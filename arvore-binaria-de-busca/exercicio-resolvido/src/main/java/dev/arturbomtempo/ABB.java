@@ -2,6 +2,7 @@ package dev.arturbomtempo;
 
 import java.util.Comparator;
 import java.util.NoSuchElementException;
+import java.util.function.Function;
 
 /**
  * Implementação de uma Árvore Binária de Busca (ABB) genérica, que permite
@@ -575,7 +576,7 @@ public class ABB<K, V> implements IMapeamento<K, V> {
             } else {
                 if (atual.getEsquerda() != null) {
                     atual = atual.getEsquerda();
-                    
+
                     while (atual.getDireita() != null) {
                         atual = atual.getDireita();
                     }
@@ -611,5 +612,59 @@ public class ABB<K, V> implements IMapeamento<K, V> {
         }
 
         return antecessor.getItem();
+    }
+
+    /**
+     * Questão 9 (auxíliar): Percorre a árvore somando os valores extraídos e
+     * contando a quantidade de elementos.
+     * 
+     * Retorna um vetor double onde:
+     * - índice 0: soma dos valores extraídos
+     * - índice 1: quantidade de elementos processados
+     *
+     * @param no       Nó atual da árvore.
+     * @param extrator Função que extrai o valor Double de um elemento V.
+     * @return Vetor [soma, contagem]
+     */
+    private double[] calcularSomaEContagem(No<K, V> no, Function<V, Double> extrator) {
+        if (no == null) {
+            return new double[] { 0, 0 };
+        }
+
+        double[] esquerda = calcularSomaEContagem(no.getEsquerda(), extrator);
+        double[] direita = calcularSomaEContagem(no.getDireita(), extrator);
+
+        double valor = extrator.apply(no.getItem());
+
+        double somaTotal = esquerda[0] + valor + direita[0];
+        double contagemTotal = esquerda[1] + 1 + direita[1];
+
+        return new double[] { somaTotal, contagemTotal };
+    }
+
+    /**
+     * Questão 9: Calcula a média dos valores Double extraídos dos elementos da
+     * árvore
+     * usando a função fornecida como parâmetro.
+     *
+     * @param extrator Função que extrai um valor Double de cada elemento V da
+     *                 árvore.
+     * @return Média dos valores extraídos.
+     * @throws IllegalStateException se a árvore estiver vazia.
+     */
+    public Double calcularValorMedio(Function<V, Double> extrator) {
+        if (vazia()) {
+            throw new IllegalStateException("A árvore está vazia.");
+        }
+
+        double[] resultado = calcularSomaEContagem(raiz, extrator);
+        double soma = resultado[0];
+        double contagem = resultado[1];
+
+        if (contagem == 0) {
+            throw new IllegalStateException("Nenhum valor foi extraído.");
+        }
+
+        return soma / contagem;
     }
 }
