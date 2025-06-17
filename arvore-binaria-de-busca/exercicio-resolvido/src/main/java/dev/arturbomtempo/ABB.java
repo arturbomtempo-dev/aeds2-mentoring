@@ -309,9 +309,11 @@ public class ABB<K, V> implements IMapeamento<K, V> {
      */
     private String caminhamentoPreOrdem(No<K, V> raizArvore) {
         if (raizArvore != null) {
-            String resposta = raizArvore.getItem() + "\n"; // Visita o nó raiz primeiro
-            resposta += caminhamentoPreOrdem(raizArvore.getEsquerda()); // Depois a subárvore esquerda
-            resposta += caminhamentoPreOrdem(raizArvore.getDireita()); // E por fim a subárvore direita
+            String resposta = raizArvore.getItem() + "\n";
+
+            resposta += caminhamentoPreOrdem(raizArvore.getEsquerda());
+            resposta += caminhamentoPreOrdem(raizArvore.getDireita());
+
             return resposta;
         } else {
             return "";
@@ -332,5 +334,44 @@ public class ABB<K, V> implements IMapeamento<K, V> {
         }
 
         return caminhamentoPreOrdem(raiz);
+    }
+
+    /**
+     * Questão 2:
+     * Realiza o caminhamento em pós-ordem (esquerda -> direita -> raiz)
+     * recursivamente
+     * a partir de um nó da árvore. Nessa varredura, primeiro são visitados os
+     * filhos,
+     * e por último o nó atual.
+     *
+     * @param raizArvore Nó atual da recursão.
+     * @return String com os itens da árvore em pós-ordem, separados por quebras de
+     *         linha.
+     */
+    private String caminhamentoPosOrdem(No<K, V> raizArvore) {
+        if (raizArvore != null) {
+            String resposta = caminhamentoPosOrdem(raizArvore.getEsquerda());
+            resposta += caminhamentoPosOrdem(raizArvore.getDireita());
+            resposta += raizArvore.getItem() + "\n";
+            return resposta;
+        } else {
+            return "";
+        }
+    }
+
+    /**
+     * Questão 2:
+     * Inicia o caminhamento em pós-ordem a partir da raiz da árvore.
+     * Lança uma exceção se a árvore estiver vazia.
+     *
+     * @return String com os itens da árvore em pós-ordem.
+     * @throws IllegalStateException se a árvore estiver vazia.
+     */
+    public String caminhamentoPosOrdem() {
+        if (vazia()) {
+            throw new IllegalStateException("A árvore está vazia.");
+        }
+
+        return caminhamentoPosOrdem(raiz);
     }
 }
