@@ -551,4 +551,65 @@ public class ABB<K, V> implements IMapeamento<K, V> {
 
         return comparador.compare(chave, raiz.getChave()) == 0;
     }
+
+    /**
+     * Questão 8 (auxíliar): Busca o antecessor de uma chave na árvore, a partir de
+     * um nó dado.
+     *
+     * @param raiz  Nó atual da recursão.
+     * @param chave Chave cujo antecessor será buscado.
+     * @return Nó antecessor ou null se não existir.
+     */
+    private No<K, V> buscarAntecessor(No<K, V> raiz, K chave) {
+        No<K, V> atual = raiz;
+        No<K, V> antecessor = null;
+
+        while (atual != null) {
+            int cmp = comparador.compare(chave, atual.getChave());
+
+            if (cmp > 0) {
+                antecessor = atual;
+                atual = atual.getDireita();
+            } else if (cmp < 0) {
+                atual = atual.getEsquerda();
+            } else {
+                if (atual.getEsquerda() != null) {
+                    atual = atual.getEsquerda();
+                    
+                    while (atual.getDireita() != null) {
+                        atual = atual.getDireita();
+                    }
+
+                    return atual;
+                }
+
+                return antecessor;
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Questão 8: Retorna o maior valor da árvore cuja chave seja menor do que a
+     * informada.
+     *
+     * @param chave Chave cujo antecessor será buscado.
+     * @return Valor associado ao antecessor da chave informada.
+     * @throws NoSuchElementException se a chave não existir ou não tiver
+     *                                antecessor.
+     */
+    public V obterAntecessor(K chave) {
+        if (vazia()) {
+            throw new IllegalStateException("A árvore está vazia.");
+        }
+
+        No<K, V> antecessor = buscarAntecessor(raiz, chave);
+
+        if (antecessor == null) {
+            throw new NoSuchElementException("O item informado não possui antecessor ou não existe.");
+        }
+
+        return antecessor.getItem();
+    }
 }
