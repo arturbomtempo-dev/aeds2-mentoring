@@ -166,7 +166,7 @@ public class ABB<K, V> implements IMapeamento<K, V> {
     private String caminhamentoEmOrdem(No<K, V> raizArvore) {
         if (raizArvore != null) {
             String resposta = caminhamentoEmOrdem(raizArvore.getEsquerda());
-            
+
             resposta += raizArvore.getItem() + "\n";
             resposta += caminhamentoEmOrdem(raizArvore.getDireita());
 
@@ -293,5 +293,44 @@ public class ABB<K, V> implements IMapeamento<K, V> {
     @Override
     public String toString() {
         return percorrer();
+    }
+
+    /**
+     * Questão 1:
+     * Realiza o caminhamento em pré-ordem (raiz -> esquerda -> direita)
+     * recursivamente
+     * a partir de um nó da árvore. Essa varredura visita primeiro o nó atual,
+     * depois
+     * a subárvore à esquerda, e por fim a subárvore à direita.
+     *
+     * @param raizArvore Nó atual da recursão.
+     * @return String com os itens da árvore em pré-ordem, separados por quebras de
+     *         linha.
+     */
+    private String caminhamentoPreOrdem(No<K, V> raizArvore) {
+        if (raizArvore != null) {
+            String resposta = raizArvore.getItem() + "\n"; // Visita o nó raiz primeiro
+            resposta += caminhamentoPreOrdem(raizArvore.getEsquerda()); // Depois a subárvore esquerda
+            resposta += caminhamentoPreOrdem(raizArvore.getDireita()); // E por fim a subárvore direita
+            return resposta;
+        } else {
+            return "";
+        }
+    }
+
+    /**
+     * Questão 1:
+     * Inicia o caminhamento em pré-ordem a partir da raiz da árvore.
+     * Lança uma exceção se a árvore estiver vazia.
+     *
+     * @return String com os itens da árvore em pré-ordem.
+     * @throws IllegalStateException se a árvore estiver vazia.
+     */
+    public String caminhamentoPreOrdem() {
+        if (vazia()) {
+            throw new IllegalStateException("A árvore está vazia.");
+        }
+
+        return caminhamentoPreOrdem(raiz);
     }
 }
