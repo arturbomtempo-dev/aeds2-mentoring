@@ -447,7 +447,8 @@ public class ABB<K, V> implements IMapeamento<K, V> {
     }
 
     /**
-     * Questão 5: Clona recursivamente uma subárvore a partir do nó fornecido.
+     * Questão 5 (auxíliar): Clona recursivamente uma subárvore a partir do nó
+     * fornecido.
      *
      * Este método cria um novo nó com a mesma chave e valor, e então repete
      * o processo para os filhos esquerdo e direito, garantindo que toda a estrutura
@@ -483,5 +484,54 @@ public class ABB<K, V> implements IMapeamento<K, V> {
         novaArvore.raiz = clonarSubarvore(this.raiz);
         novaArvore.tamanho = this.tamanho;
         return novaArvore;
+    }
+
+    /**
+     * Questão 6 (auxiliar): Percorre a árvore original e insere no subconjunto
+     * apenas os elementos com chave >= à chave informada.
+     *
+     * Este método usa caminhamento em ordem para preservar a ordenação.
+     *
+     * @param noAtual     Nó atual da árvore original.
+     * @param chave       Chave de referência.
+     * @param subconjunto Árvore onde os nós válidos serão inseridos.
+     */
+    private void preencherSubconjuntoMaiores(No<K, V> noAtual, K chave, ABB<K, V> subconjunto) {
+        if (noAtual == null)
+            return;
+
+        int comparacao = comparador.compare(noAtual.getChave(), chave);
+
+        preencherSubconjuntoMaiores(noAtual.getDireita(), chave, subconjunto);
+
+        if (comparacao >= 0) {
+            subconjunto.inserir(noAtual.getChave(), noAtual.getItem());
+        }
+
+        if (comparacao >= 0) {
+            preencherSubconjuntoMaiores(noAtual.getEsquerda(), chave, subconjunto);
+        }
+    }
+
+    /**
+     * Questão 6: Retorna uma nova árvore contendo apenas os elementos cujas chaves
+     * são maiores ou iguais à chave informada.
+     * 
+     * Se nenhuma chave for maior ou igual à chave passada, uma exceção será
+     * lançada.
+     *
+     * @param chave Chave de referência.
+     * @return Nova árvore ABB contendo apenas os nós com chave >= chave fornecida.
+     * @throws NoSuchElementException se nenhum elemento atender ao critério.
+     */
+    public ABB<K, V> obterSubconjuntoMaiores(K chave) {
+        ABB<K, V> subconjunto = new ABB<>(this.comparador);
+        preencherSubconjuntoMaiores(this.raiz, chave, subconjunto);
+
+        if (subconjunto.vazia()) {
+            throw new NoSuchElementException("Nenhum elemento com chave maior ou igual foi encontrado.");
+        }
+
+        return subconjunto;
     }
 }
