@@ -351,8 +351,10 @@ public class ABB<K, V> implements IMapeamento<K, V> {
     private String caminhamentoPosOrdem(No<K, V> raizArvore) {
         if (raizArvore != null) {
             String resposta = caminhamentoPosOrdem(raizArvore.getEsquerda());
+
             resposta += caminhamentoPosOrdem(raizArvore.getDireita());
             resposta += raizArvore.getItem() + "\n";
+
             return resposta;
         } else {
             return "";
@@ -373,5 +375,47 @@ public class ABB<K, V> implements IMapeamento<K, V> {
         }
 
         return caminhamentoPosOrdem(raiz);
+    }
+
+    /**
+     * Questão 3:
+     * Realiza o caminhamento em ordem decrescente (direita -> raiz -> esquerda)
+     * recursivamente,
+     * retornando os valores dos nós em ordem decrescente das chaves.
+     * 
+     * Esse tipo de percurso é útil quando se deseja listar os elementos do maior
+     * para o menor.
+     *
+     * @param raizArvore Nó atual da recursão.
+     * @return String com os itens da árvore em ordem decrescente, separados por
+     *         quebras de linha.
+     */
+    private String caminhamentoDecrescente(No<K, V> raizArvore) {
+        if (raizArvore != null) {
+            String resposta = caminhamentoDecrescente(raizArvore.getDireita());
+
+            resposta += raizArvore.getItem() + "\n";
+            resposta += caminhamentoDecrescente(raizArvore.getEsquerda());
+            return resposta;
+        } else {
+            return "";
+        }
+    }
+
+    /**
+     * Questão 3:
+     * Inicia o caminhamento da árvore em ordem decrescente a partir da raiz.
+     * 
+     * Lança uma exceção se a árvore estiver vazia.
+     *
+     * @return String com os itens da árvore em ordem decrescente.
+     * @throws IllegalStateException se a árvore estiver vazia.
+     */
+    public String caminhamentoDecrescente() {
+        if (vazia()) {
+            throw new IllegalStateException("A árvore está vazia.");
+        }
+
+        return caminhamentoDecrescente(raiz);
     }
 }
