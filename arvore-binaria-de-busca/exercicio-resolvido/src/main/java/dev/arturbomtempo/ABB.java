@@ -534,4 +534,21 @@ public class ABB<K, V> implements IMapeamento<K, V> {
 
         return subconjunto;
     }
+
+    /**
+     * Questão 7: Verifica se a chave informada corresponde à raiz da árvore.
+     * 
+     * Se a árvore estiver vazia, lança uma exceção.
+     *
+     * @param chave Chave a ser verificada.
+     * @return true se a chave corresponder à raiz da árvore, false caso contrário.
+     * @throws IllegalStateException se a árvore estiver vazia.
+     */
+    public boolean ehRaiz(K chave) {
+        if (vazia()) {
+            throw new IllegalStateException("A árvore está vazia.");
+        }
+
+        return comparador.compare(chave, raiz.getChave()) == 0;
+    }
 }
