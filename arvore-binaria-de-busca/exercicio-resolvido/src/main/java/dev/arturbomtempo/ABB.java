@@ -3,6 +3,7 @@ package dev.arturbomtempo;
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.function.Function;
+import java.util.function.Predicate;
 
 /**
  * Implementação de uma Árvore Binária de Busca (ABB) genérica, que permite
@@ -666,5 +667,43 @@ public class ABB<K, V> implements IMapeamento<K, V> {
         }
 
         return soma / contagem;
+    }
+
+    /**
+     * Questão 10 (auxíliar): Percorre a árvore recursivamente contando quantos
+     * elementos satisfazem a condição.
+     *
+     * @param no          Nó atual da árvore.
+     * @param condicional Predicado que define a condição a ser verificada.
+     * @return Contagem de elementos que satisfazem a condição.
+     */
+    private int contarSe(No<K, V> no, Predicate<V> condicional) {
+        if (no == null) {
+            return 0;
+        }
+
+        int contador = contarSe(no.getEsquerda(), condicional) +
+                contarSe(no.getDireita(), condicional);
+
+        if (condicional.test(no.getItem())) {
+            contador++;
+        }
+
+        return contador;
+    }
+
+    /**
+     * Questão 10: Conta quantos elementos da árvore satisfazem a condição dada pelo
+     * predicado.
+     *
+     * @param condicional Predicado que define a condição a ser verificada.
+     * @return Número de elementos que satisfazem a condição.
+     * @throws IllegalStateException se a árvore estiver vazia.
+     */
+    public int contarSe(Predicate<V> condicional) {
+        if (vazia()) {
+            throw new IllegalStateException("A árvore está vazia.");
+        }
+        return contarSe(raiz, condicional);
     }
 }
