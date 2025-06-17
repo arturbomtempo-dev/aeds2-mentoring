@@ -418,4 +418,70 @@ public class ABB<K, V> implements IMapeamento<K, V> {
 
         return caminhamentoDecrescente(raiz);
     }
+
+    /**
+     * Questão 4: Método responsável por encontrar e retornar o menor elemento da
+     * árvore binária de busca.
+     * 
+     * A busca parte da raiz e segue continuamente pelo filho à esquerda, pois, em
+     * uma ABB, os menores elementos estão sempre localizados na extremidade
+     * esquerda. Quando não houver mais filhos à esquerda, o nó atual conterá a
+     * menor chave da árvore.
+     * 
+     * Se a árvore estiver vazia, lança uma exceção informando que não há elementos.
+     *
+     * @return Valor associado à menor chave da árvore.
+     * @throws NoSuchElementException se a árvore estiver vazia.
+     */
+    public V obterMenor() {
+        if (vazia()) {
+            throw new NoSuchElementException("A árvore está vazia. Não há menor elemento.");
+        }
+
+        No<K, V> atual = raiz;
+        while (atual.getEsquerda() != null) {
+            atual = atual.getEsquerda();
+        }
+
+        return atual.getItem();
+    }
+
+    /**
+     * Questão 5: Clona recursivamente uma subárvore a partir do nó fornecido.
+     *
+     * Este método cria um novo nó com a mesma chave e valor, e então repete
+     * o processo para os filhos esquerdo e direito, garantindo que toda a estrutura
+     * da subárvore seja copiada.
+     *
+     * @param noAtual Nó atual da árvore original.
+     * @return Novo nó raiz da subárvore clonada.
+     */
+    private No<K, V> clonarSubarvore(No<K, V> noAtual) {
+        if (noAtual == null) {
+            return null;
+        }
+
+        No<K, V> novoNo = new No<>(noAtual.getChave(), noAtual.getItem());
+
+        novoNo.setEsquerda(clonarSubarvore(noAtual.getEsquerda()));
+        novoNo.setDireita(clonarSubarvore(noAtual.getDireita()));
+
+        return novoNo;
+    }
+
+    /**
+     * Questão 5: Cria e retorna uma cópia exata da árvore binária de busca atual.
+     * 
+     * A árvore resultante terá os mesmos dados e estrutura da original, mas os nós
+     * serão objetos diferentes na memória.
+     *
+     * @return Nova árvore ABB clonada.
+     */
+    @Override
+    public ABB<K, V> clone() {
+        ABB<K, V> novaArvore = new ABB<>(this.comparador);
+        novaArvore.raiz = clonarSubarvore(this.raiz);
+        novaArvore.tamanho = this.tamanho;
+        return novaArvore;
+    }
 }
