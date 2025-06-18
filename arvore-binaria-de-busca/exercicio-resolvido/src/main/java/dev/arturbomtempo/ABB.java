@@ -450,11 +450,11 @@ public class ABB<K, V> implements IMapeamento<K, V> {
 
     /**
      * Questão 5 (auxíliar): Clona recursivamente uma subárvore a partir do nó
-     * fornecido.
+     * fornecido, utilizando o método clone() da classe No.
      *
-     * Este método cria um novo nó com a mesma chave e valor, e então repete
-     * o processo para os filhos esquerdo e direito, garantindo que toda a estrutura
-     * da subárvore seja copiada.
+     * Este método cria um novo nó com a mesma chave e valor usando o método clone() 
+     * do nó, e então repete o processo para os filhos esquerdo e direito, garantindo 
+     * que toda a estrutura da subárvore seja copiada.
      *
      * @param noAtual Nó atual da árvore original.
      * @return Novo nó raiz da subárvore clonada.
@@ -464,8 +464,8 @@ public class ABB<K, V> implements IMapeamento<K, V> {
             return null;
         }
 
-        No<K, V> novoNo = new No<>(noAtual.getChave(), noAtual.getItem());
-
+        No<K, V> novoNo = noAtual.clone();
+        
         novoNo.setEsquerda(clonarSubarvore(noAtual.getEsquerda()));
         novoNo.setDireita(clonarSubarvore(noAtual.getDireita()));
 
@@ -476,7 +476,8 @@ public class ABB<K, V> implements IMapeamento<K, V> {
      * Questão 5: Cria e retorna uma cópia exata da árvore binária de busca atual.
      * 
      * A árvore resultante terá os mesmos dados e estrutura da original, mas os nós
-     * serão objetos diferentes na memória.
+     * serão objetos diferentes na memória. Este método utiliza o método clone() da
+     * classe No para criar cópias dos nós originais.
      *
      * @return Nova árvore ABB clonada.
      */

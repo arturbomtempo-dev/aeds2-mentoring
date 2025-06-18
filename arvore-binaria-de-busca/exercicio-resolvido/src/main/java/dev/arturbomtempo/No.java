@@ -98,4 +98,16 @@ public class No<K, V> {
 
         return (alturaEsquerda - alturaDireita);
     }
+
+    /**
+     * Cria e retorna uma cópia exata deste nó.
+     * O nó clonado terá a mesma chave e valor, mas os filhos
+     * serão inicialmente nulos.
+     *
+     * @return Uma cópia deste nó.
+     */
+    @Override
+    public No<K, V> clone() {
+        return new No<>(this.chave, this.item);
+    }
 }
