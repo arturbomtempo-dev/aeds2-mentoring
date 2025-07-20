@@ -1,5 +1,3 @@
-package dev.arturbomtempo;
-
 import java.util.Comparator;
 import java.util.NoSuchElementException;
 import java.util.function.Function;

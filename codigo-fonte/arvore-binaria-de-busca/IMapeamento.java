@@ -1,5 +1,3 @@
-package dev.arturbomtempo;
-
 /**
  * Interface genérica que define as operações básicas de uma estrutura de árvore binária.
  * 

@@ -1,5 +1,3 @@
-package dev.arturbomtempo;
-
 /**
  * Classe de aplicação responsável por demonstrar o uso da
  * Árvore Binária de Busca (ABB) com objetos do tipo {@link Aluno}.

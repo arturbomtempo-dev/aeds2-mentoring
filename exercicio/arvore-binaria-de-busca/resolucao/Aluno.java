@@ -1,5 +1,3 @@
-package dev.arturbomtempo;
-
 /**
  * Classe que representa um aluno com nome, número de matrícula e nota.
  * Implementa {@link Comparable} para permitir comparação com base no nome.

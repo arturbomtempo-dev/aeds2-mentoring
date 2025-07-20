@@ -1,5 +1,3 @@
-package dev.arturbomtempo;
-
 /**
  * Representa um nó genérico de uma árvore binária, armazenando uma chave,
  * um valor associado e referências para os filhos esquerdo e direito.
