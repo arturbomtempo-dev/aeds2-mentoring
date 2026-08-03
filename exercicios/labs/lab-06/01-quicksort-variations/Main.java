@@ -6,7 +6,6 @@ import java.util.Random;
  * @author Artur Bomtempo Colen
  * @version 1.0, 07/10/2024
  */
-
 public class Main {
     public static void swap(int i, int j, int[] array) {
         int temp = array[i];
@@ -21,7 +20,7 @@ public class Main {
             QuickSortFirstPivot(array, pivotIndex + 1, right);
         }
     }
-    
+
     private static int partitionFirstPivot(int[] array, int left, int right) {
         int pivot = array[left];
         int i = left + 1;
@@ -35,7 +34,7 @@ public class Main {
         swap(left, i - 1, array);
         return i - 1;
     }
-    
+
     public static void QuickSortLastPivot(int[] array, int left, int right) {
         if (left < right) {
             int pivotIndex = partitionLastPivot(array, left, right);
@@ -43,7 +42,7 @@ public class Main {
             QuickSortLastPivot(array, pivotIndex + 1, right);
         }
     }
-    
+
     private static int partitionLastPivot(int[] array, int left, int right) {
         int pivot = array[right];
         int i = left;
@@ -57,7 +56,7 @@ public class Main {
         swap(i, right, array);
         return i;
     }
-    
+
     public static void QuickSortRandomPivot(int[] array, int left, int right) {
         if (left < right) {
             int pivotIndex = partitionRandomPivot(array, left, right);
@@ -65,14 +64,14 @@ public class Main {
             QuickSortRandomPivot(array, pivotIndex + 1, right);
         }
     }
-    
+
     private static int partitionRandomPivot(int[] array, int left, int right) {
         Random rand = new Random();
         int pivotIndex = left + rand.nextInt(right - left + 1);
         swap(pivotIndex, right, array);
         return partitionLastPivot(array, left, right);
     }
-    
+
     public static void QuickSortMedianOfThree(int[] array, int left, int right) {
         if (left < right) {
             int pivotIndex = partitionMedianOfThree(array, left, right);
@@ -80,14 +79,14 @@ public class Main {
             QuickSortMedianOfThree(array, pivotIndex + 1, right);
         }
     }
-    
+
     private static int partitionMedianOfThree(int[] array, int left, int right) {
         int mid = (left + right) / 2;
         int pivot = medianOfThree(array, left, mid, right);
         swap(pivot, right, array);
         return partitionLastPivot(array, left, right);
     }
-    
+
     private static int medianOfThree(int[] array, int a, int b, int c) {
         if (array[a] > array[b]) {
             swap(a, b, array);
@@ -100,7 +99,7 @@ public class Main {
         }
         return b;
     }
-    
+
     public static void main(String[] args) {
         int[] sizes = { 100, 1000, 10000 };
         Random rand = new Random();

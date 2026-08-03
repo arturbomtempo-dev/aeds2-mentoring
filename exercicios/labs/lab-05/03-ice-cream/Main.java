@@ -6,7 +6,6 @@ import java.util.*;
  * @author Artur Bomtempo Colen
  * @version 1.0, 12/09/2024
  */
-
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -37,13 +36,13 @@ public class Main {
                     if (intervals[i][0] <= endCurrent) {
                         endCurrent = Math.max(endCurrent, intervals[i][1]);
                     } else {
-                        result.add(new int[]{startCurrent, endCurrent});
+                        result.add(new int[] { startCurrent, endCurrent });
                         startCurrent = intervals[i][0];
                         endCurrent = intervals[i][1];
                     }
                 }
 
-                result.add(new int[]{startCurrent, endCurrent});
+                result.add(new int[] { startCurrent, endCurrent });
 
                 System.out.println("Teste " + test);
 

@@ -7,14 +7,16 @@
  * @author Artur Bomtempo Colen
  * @version 1.0, 18/08/2024
  */
-
-int checkCapitalLetters(char word[]) {
+int checkCapitalLetters(char word[])
+{
     int count = 0;
 
-    for (int i = 0; i < strlen(word); i++) {
+    for (int i = 0; i < strlen(word); i++)
+    {
         char currentChar = word[i];
 
-        if (currentChar >= 'A' && currentChar <= 'Z') {
+        if (currentChar >= 'A' && currentChar <= 'Z')
+        {
             count++;
         }
     }
@@ -22,12 +24,14 @@ int checkCapitalLetters(char word[]) {
     return count;
 }
 
-int main() {
+int main()
+{
     char input[100];
 
     scanf(" %[^\n]", input);
 
-    while (!(input[0] == 'F' && input[1] == 'I' && input[2] == 'M')) {
+    while (!(input[0] == 'F' && input[1] == 'I' && input[2] == 'M'))
+    {
         int numCapitalLetters = checkCapitalLetters(input);
         printf("%d\n", numCapitalLetters);
 

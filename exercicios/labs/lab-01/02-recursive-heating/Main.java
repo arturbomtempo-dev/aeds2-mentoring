@@ -6,7 +6,6 @@ import java.util.Scanner;
  * @author Artur Bomtempo Colen
  * @version 1.0, 18/08/2024
  */
-
 public class Main {
     private static int checkCapitalLetters(String word, int index) {
         int count = 0;

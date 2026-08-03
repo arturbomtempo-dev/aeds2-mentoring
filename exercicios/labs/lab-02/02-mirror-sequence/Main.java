@@ -6,7 +6,6 @@ import java.util.Scanner;
  * @author Artur Bomtempo Colen
  * @version 1.0, 25/08/2024
  */
-
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);

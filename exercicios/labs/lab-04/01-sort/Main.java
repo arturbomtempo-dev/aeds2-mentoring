@@ -6,7 +6,6 @@ import java.util.Scanner;
  * @author Artur Bomtempo Colen
  * @version 1.0, 08/09/2024
  */
-
 public class Main {
     public static boolean shouldSwap(int a, int b, int M) {
         boolean swap;
