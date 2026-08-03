@@ -9,7 +9,6 @@ import java.util.Random;
  * @language Java
  * @version 1.0
  */
-
 public class Main {
     public static int sequentialSearch(int[] array, int target) {
         for (int i = 0; i < array.length; i++) {

@@ -7,7 +7,6 @@
  * @language Java
  * @version 1.0
  */
-
 class List {
     private int[] array;
     private int n;

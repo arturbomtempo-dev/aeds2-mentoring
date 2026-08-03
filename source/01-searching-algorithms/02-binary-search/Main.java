@@ -10,7 +10,6 @@ import java.util.Random;
  * @language Java
  * @version 1.0
  */
-
 public class Main {
     public static int binarySearch(int[] array, int target) {
         int left = 0;
@@ -45,7 +44,7 @@ public class Main {
         for (int num : array) {
             System.out.print(num + " ");
         }
-        
+
         System.out.println("]");
     }
 

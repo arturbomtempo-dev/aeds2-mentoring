@@ -7,7 +7,6 @@
  * @language Java
  * @version 1.0
  */
-
 public class Main {
     static int[] numbersArray;
     static int n;

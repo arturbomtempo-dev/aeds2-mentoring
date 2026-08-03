@@ -7,7 +7,6 @@
  * @language Java
  * @version 1.0
  */
-
 class Queue {
     private static final int LENGTH = 6;
     private static int[] array = new int[LENGTH];

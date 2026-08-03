@@ -7,7 +7,6 @@
  * @language Java
  * @version 1.0
  */
-
 class Stack {
     private static final int LENGTH = 6;
     private int[] array = new int[LENGTH];
