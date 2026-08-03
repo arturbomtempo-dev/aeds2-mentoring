@@ -6,7 +6,6 @@ import java.util.Scanner;
  * @author Artur Bomtempo Colen
  * @version 1.0, 27/10/2024
  */
-
 public class Main {
     private static boolean checkParking(int[] arrivals, int[] departures, int N, int capacity) {
         int carsInParking = 0;
@@ -49,7 +48,7 @@ public class Main {
             if (N != 0 && K != 0) {
                 int[] arrivals = new int[N];
                 int[] departures = new int[N];
-                
+
                 for (int i = 0; i < N; i++) {
                     arrivals[i] = sc.nextInt();
                     departures[i] = sc.nextInt();

@@ -6,7 +6,6 @@ import java.util.*;
  * @author Artur Bomtempo Colen
  * @version 1.0, 10/12/2024
  */
-
 public class Main {
     private static void bubbleSort(String[] array, int n) {
         for (int i = 0; i < n - 1; i++) {
@@ -19,7 +18,7 @@ public class Main {
             }
         }
     }
-    
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
@@ -28,7 +27,7 @@ public class Main {
 
             if (start.equals("1")) {
                 String[] packages = new String[10];
-                int count = 0; 
+                int count = 0;
 
                 while (sc.hasNextLine()) {
                     String line = sc.nextLine();

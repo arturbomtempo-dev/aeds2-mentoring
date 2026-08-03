@@ -6,7 +6,6 @@ import java.util.Scanner;
  * @author Artur Bomtempo Colen
  * @version 2.0, 05/11/2024
  */
-
 class Stack {
     int[] array;
     int n;
@@ -47,7 +46,7 @@ class Stack {
         }
 
         return smaller;
-     }
+    }
 }
 
 public class Main {

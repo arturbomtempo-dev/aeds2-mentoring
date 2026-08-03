@@ -36,7 +36,7 @@ public class Main {
         Scanner sc = new Scanner(System.in);
 
         while (sc.hasNext()) {
-            int elementsNumber =  sc.nextInt();
+            int elementsNumber = sc.nextInt();
 
             if (elementsNumber != 0) {
                 numbersArray = new int[elementsNumber];

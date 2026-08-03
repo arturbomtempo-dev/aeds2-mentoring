@@ -6,7 +6,6 @@ import java.util.*;
  * @author Artur Bomtempo Colen
  * @version 1.0, 11/12/2024
  */
-
 public class Main {
     public static int gcd(int a, int b) {
         while (b != 0) {
@@ -14,7 +13,7 @@ public class Main {
             b = a % b;
             a = temp;
         }
-        
+
         return a;
     }
 
